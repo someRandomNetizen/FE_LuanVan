@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/66853322/reactjs-export-to-excel-using-xlsx-utils-json-to-sheet
+
+nested:
+https://stackoverflow.com/questions/65793937/nested-array-of-objects-into-downloadable-csv-in-react

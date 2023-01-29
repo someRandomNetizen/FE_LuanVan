@@ -1,0 +1,3 @@
+ssh fds_server
+cd 365_truck/
+./build_365truck_admin.sh

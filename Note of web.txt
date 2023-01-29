@@ -1,0 +1,6 @@
+\_metronic\layout\menuconfig có thể thêm và sửa cả header ở trên và phần side kế bên
+header bên profile: \_metronic\layout\header\topbars.js
+public\index.html cho trang tab 
+
+
+subheader
