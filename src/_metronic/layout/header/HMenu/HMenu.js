@@ -31,10 +31,10 @@ class HMenu extends React.Component {
   //   return toAbsoluteUrl(`/media/logos/${result}`);
   // }
   getHeaderLogo() {
-    let result = "logoSmall16.png";
+    let result = "uit6.png";
     console.log("this.props.headerSelfSkin", this.props.headerSelfSkin);
     if (this.props.headerSelfSkin && this.props.headerSelfSkin !== "dark") {
-      result = "logoSmall16.png";
+      result = "uit6.png";
     }
     return toAbsoluteUrl(`/media/logos/${result}`);
   }

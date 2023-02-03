@@ -14,10 +14,10 @@ export const initLayoutConfig = {
   //   }
   // },
   logo: {
-    dark: toAbsoluteUrl("/media/logos/logoSmall16.png"),
-    light: toAbsoluteUrl("/media/logos/logoSmall16.png"),
-    brand: toAbsoluteUrl("/media/logos/logoSmall16.png"),
-    green: toAbsoluteUrl("/media/logos/logoSmall16.png")
+    dark: toAbsoluteUrl("/media/logos/uit6.png"),
+    light: toAbsoluteUrl("/media/logos/uit6.png"),
+    brand: toAbsoluteUrl("/media/logos/uit6.png"),
+    green: toAbsoluteUrl("/media/logos/uit6.png")
   }
 },
   // == Portlet Plugin
