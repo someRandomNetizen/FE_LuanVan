@@ -33,17 +33,18 @@ export default function AuthPage() {
               </div>
               <div className="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
                 <div className="kt-grid__item kt-grid__item--middle">
-                  <h3 className="kt-login__title">Welcome to 365Admin Truck!</h3>
+                  <h3 className="kt-login__title">Welcome to CE1380 Admin Page!</h3>
                   <h4 className="kt-login__subtitle">
-                    We hope you're having a good time with 365Admin Truck,
-                    a simpler and easier solution for managing.
+                    I would like to express my deepest gratitude to 
+                    my respectable mentor, Lau Phi Tuong. This work couldn't have
+                    been done without him.
                   </h4>
                 </div>
               </div>
               <div className="kt-grid__item">
                 <div className="kt-login__info">
                   <div className="kt-login__copyright">
-                    &copy; 2022 Admin Truck
+                    &copy; 2023 CE1380 Thesis
                   </div>
                   <div className="kt-login__menu">
                     <Link to="/terms" className="kt-link">

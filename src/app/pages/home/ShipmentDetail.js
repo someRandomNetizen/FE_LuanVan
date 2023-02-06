@@ -116,7 +116,7 @@ export function ShipmentDetail(props) {
   const [post, setPost] = React.useState(null);
 
   React.useEffect(() => {
-    axios.post('localhost:3001/api/getShipment',
+    axios.post('https://365truck.fdssoft.com/api/getShipment',
     
     {id: state },
     kk).then((response) => {

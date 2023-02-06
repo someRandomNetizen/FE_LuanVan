@@ -31,7 +31,7 @@ class UserProfile extends React.Component {
             )}
 
             {/* {showAvatar && <img alt="Pic" src={user.pic} />} */}
-            {showAvatar && <img alt="Pic" src={toAbsoluteUrl("/media/flags/ugly.jpg")} />}
+            {showAvatar && <img alt="Pic" src={toAbsoluteUrl("/media/flags/Thai2.jpg")} />}
             {showBadge && (
               <span className="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">
                 {/* TODO: Should get from currentUser */}
@@ -56,7 +56,7 @@ class UserProfile extends React.Component {
               </span> */}
 
               <span className="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
-                <img alt="Pic" src={toAbsoluteUrl("/media/flags/ugly.jpg")} />
+                <img alt="Pic" src={toAbsoluteUrl("/media/flags/Thai2.jpg")} />
               </span>
 
             </div>

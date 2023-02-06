@@ -10,23 +10,17 @@ export default {
         translate: "MENU.DASHBOARD"
       },
       {
-        title: "Drivers",
+        title: "Devices",
         root: true,
         alignment: "left",
         page: "DriverPage",
         translate: "MENU.DASHBOARD"
       },
       {
-        title: "Shipment Orders",
+        title: "Records",
         root: true,
         alignment: "left",
         page: "ShipmentPage",
-      },
-      {
-        title: "LogOut",
-        root: true,
-        alignment: "left",
-        page: "LogOut",
       },
       
       // {
@@ -545,15 +539,15 @@ export default {
       //   page: "builder"
       // },
       {
-        title: "Driver ",
+        title: "Devices ",
         root: true,
-        icon: "flaticon2-lorry",
+        icon: "flaticon2-browser-1",
         page: "DriverPage"
       },
       {
-        title: "Shipment Orders",
+        title: "Records",
         root: true,
-        icon: "flaticon2-browser-1",
+        icon: "flaticon2-list",
         page: "ShipmentPage"
       },
       // { section: "Components" },

@@ -49,8 +49,8 @@ function Login(props) {
 
           <Formik
             initialValues={{
-              email: "hitozen@gmail.com",
-              password: "Abc123456!"
+              email: "2admin@gmail.com",
+              password: "2QWEqwe123!@#"
             }}
             validate={values => {
               const errors = {};
@@ -131,8 +131,8 @@ function Login(props) {
                 ) : (
                   <div role="alert" className="alert alert-info">
                     <div className="alert-text">
-                      Use account <strong>hitozen@gmail.com</strong> and password{" "}
-                      <strong>Abc123456!</strong> to continue.
+                      Use account <strong>2admin@gmail.com</strong> and password{" "}
+                      <strong>2QWEqwe123!@#</strong> to continue.
                     </div>
                   </div>
                 )}
@@ -196,12 +196,12 @@ function Login(props) {
           <div className="kt-login__divider">
             <div className="kt-divider">
               <span />
-              <span>OR</span>
+              <span></span>
               <span />
             </div>
           </div>
 
-          <div className="kt-login__options">
+          {/* <div className="kt-login__options">
             <Link to="http://facebook.com" className="btn btn-primary kt-btn">
               <i className="fab fa-facebook-f" />
               Facebook
@@ -214,7 +214,7 @@ function Login(props) {
               <i className="fab fa-google" />
               Google
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

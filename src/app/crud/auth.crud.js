@@ -1,15 +1,15 @@
 import axios from "axios";
 
 //export const LOGIN_URL = "api/auth/login";
-export const LOGIN_URL = "http://localhost:3001/api/auth/loginUser";
+export const LOGIN_URL = "https://365truck.fdssoft.com/api/auth/loginAdmin";
 //export const LOGIN_URL = "http://localhost:3001/api/auth/loginUser";
 export const REGISTER_URL = "api/auth/register";
 export const REQUEST_PASSWORD_URL = "api/auth/forgot-password";
 //export const LOGIN_URL = "https://365truck.fdssoft.com/server/admin/auth/loginAdmin";
 //export const ME_URL = "api/me";
 //export const ME_URL = "http://localhost:3001/api/showUser";
-export const ME_URL = " http://localhost:3001/api/showUser";
-export const GET_DRIVER = "http://localhost:3001/api/showDriver";
+export const ME_URL = "https://365truck.fdssoft.com/api/showUserAdmin";
+export const GET_DRIVER = "https://365truck.fdssoft.com/api/showDriverAdmin";
 
 export function login(user_name, password) {
   console.log(user_name);
