@@ -95,7 +95,7 @@ td {
 }
 
 #mytable .left0 {
-  font-size: 23px;
+  font-size: 20px;
   padding-left: 0px;
   text-align:left; 
   background-color:whitesmoke; 
@@ -107,7 +107,7 @@ td {
 }
 
 #mytable .body {
-  font-size: 23px;
+  font-size: 20px;
   text-align: center;
   background-color: whitesmoke;
   border-right: 8px solid whitesmoke;
@@ -284,7 +284,7 @@ background-color: #4CAF50;
 }
 
 .search3 {
-width: 125%;
+width: 105%;
 position: center;
 display: flex;
 padding: 5px;

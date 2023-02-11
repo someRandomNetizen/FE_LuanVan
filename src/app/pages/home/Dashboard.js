@@ -284,7 +284,7 @@ export default function Dashboard() {
             
             <PortletHeader
             
-              title="Thống Kê Clock Cycle"
+              title="CPU Utiliation Statistic"
              
             />
 

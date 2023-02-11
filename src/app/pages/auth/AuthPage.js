@@ -47,15 +47,7 @@ export default function AuthPage() {
                     &copy; 2023 CE1380 Thesis
                   </div>
                   <div className="kt-login__menu">
-                    <Link to="/terms" className="kt-link">
-                      Privacy
-                    </Link>
-                    <Link to="/terms" className="kt-link">
-                      Legal
-                    </Link>
-                    <Link to="/terms" className="kt-link">
-                      Contact
-                    </Link>
+                   
                   </div>
                 </div>
               </div>

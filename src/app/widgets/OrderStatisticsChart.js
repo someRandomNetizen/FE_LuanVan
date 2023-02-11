@@ -204,7 +204,17 @@ export default function OrderStatisticsChart() {
           titleFontColor: "#ffffff",
           cornerRadius: 4,
           footerSpacing: 0,
-          titleSpacing: 0
+          titleSpacing: 0,
+          callbacks: {
+            title: function(tooltipItem, data) {
+              return "Device " + (tooltipItem[0].datasetIndex + 1);
+            },
+            label: function(tooltipItem, data) {
+              var label = data.datasets[tooltipItem.datasetIndex].label || '';
+              label += '' + tooltipItem.yLabel + ' at ' + data.labels[tooltipItem.index];
+              return label;
+            }
+          }
         },
         layout: {
           padding: {
