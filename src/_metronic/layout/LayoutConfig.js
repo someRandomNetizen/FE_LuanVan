@@ -104,40 +104,41 @@ export const initLayoutConfig = {
       skin: "dark"
     }
   },
-  aside: {
-    self: {
-      skin: "dark",
-      display: true,
-      fixed: true,
-      minimize: {
-        toggle: true,
-        default: false
-      }
-    },
-    footer: {
-      self: {
-        display: true
-      }
-    },
-    menu: {
-      dropdown: "false",
-      scroll: false,
-      "icon-style": "duotone",
-      submenu: {
-        accordion: true,
-        dropdown: {
-          arrow: true,
-          "hover-timeout": 100
-        }
-      }
-    }
-  },
-  footer: {
-    self: {
-      width: 'fluid',
-      fixed: false
-    }
-  }
+  //at here where i delete aside
+  // aside: {
+  //   self: {
+  //     skin: "dark",
+  //     display: true,
+  //     fixed: true,
+  //     minimize: {
+  //       toggle: true,
+  //       default: false
+  //     }
+  //   },
+  //   footer: {
+  //     self: {
+  //       display: true
+  //     }
+  //   },
+  //   menu: {
+  //     dropdown: "false",
+  //     scroll: false,
+  //     "icon-style": "duotone",
+  //     submenu: {
+  //       accordion: true,
+  //       dropdown: {
+  //         arrow: true,
+  //         "hover-timeout": 100
+  //       }
+  //     }
+  //   }
+  // },
+  // footer: {
+  //   self: {
+  //     width: 'fluid',
+  //     fixed: false
+  //   }
+  // }
 };
 
 let LayoutConfig = JSON.parse(JSON.stringify(initLayoutConfig)); // deep object copy

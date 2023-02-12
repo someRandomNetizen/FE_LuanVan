@@ -330,8 +330,8 @@ const _handleFile = async (e) => {
 
   //search{
   const [query, setQuery] = useState("");
-  const keys = ["Manufacturer","Product_Category","Series","Product","RF_Frequency","Brand","Data_Bus_Width","Interface_Type","Operating_Supply_Voltage","Unit_Weight","Product_id"];
-
+  // const keys = ["Manufacturer","Product_Category","Series","Product","RF_Frequency","Brand","Data_Bus_Width","Interface_Type","Operating_Supply_Voltage","Unit_Weight","Product_id"];
+  const keys = ["Product_id"];
   const search = (data) => {
     console.log("love2")
     console.log(data)
