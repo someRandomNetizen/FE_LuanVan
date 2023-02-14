@@ -43,7 +43,7 @@ export default class Topbar extends React.Component {
           {/* <QuickPanelToggler /> */}
 
 
-          <LanguageSelector iconType="" />
+          {/* <LanguageSelector iconType="" /> */}
 
         <UserProfile showAvatar={true} showHi={true} showBadge={false} />
 
