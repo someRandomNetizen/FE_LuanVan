@@ -211,25 +211,23 @@ export function ShipmentPage() {
       <table id="mytable">
         <tbody>
           <tr>
-            <th class = "left0">Temperature</th>
+            <th class = "body">Record id</th>
+            <th class = "body">Temperature</th>
             <th class = "body">Humidity</th>
-            <th class = "body">Clock Cycle</th>
             <th class = "body">CPU Utilization</th>
             <th class = "body">Date</th>
             <th class = "body">Time</th>
             <th class = "body">Product id</th>
-            <th class = "body">Record id</th>
           </tr>
           {data.map((item) => (
             <tr>
-            <td><div class="left">{item.Temperature}</div></td>
-            <td><div class="age0">{item.Humidity}</div></td>
-            <td>{item.Clock_Cycle}</td>
+            <td>{item.Record_id}</td>
+            <td>{item.Temperature}</td>
+            <td>{item.Humidity}</td>
             <td>{item.CPU_Utilization}</td>
             <td class="body9">{item.Date}</td>
-            <td class="body1">{item.Time}</td>
-            <td class="body2">{item.Product_id}</td>
-            <td>{item.Record_id}</td>
+            <td class="body13">{item.Time}</td>
+            <td class="body20">{item.Product_id}</td>
             </tr>
           ))}
         </tbody>

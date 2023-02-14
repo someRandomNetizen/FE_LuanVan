@@ -3,14 +3,14 @@ export default {
     self: {},
     items: [
       {
-        title: "Dashboards",
+        title: "Graph Statistic",
         root: true,
         alignment: "left",
         page: "dashboard",
         translate: "MENU.DASHBOARD"
       },
       {
-        title: "Devices",
+        title: "Nodes Detail",
         root: true,
         alignment: "left",
         page: "DriverPage",

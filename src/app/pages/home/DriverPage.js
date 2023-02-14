@@ -209,33 +209,25 @@ export function DriverPage() {
       <table id="mytable">
         <tbody>
           <tr>
-            <th class = "left0">Manufacturer</th>
-            <th class = "body">Product Category</th>
+            <th class = "body">Product id</th>
+            <th class = "body">Manufacturer</th>
             <th class = "body">Series</th>
             <th class = "body">Product</th>
             <th class = "body">Core</th>
             <th class = "body">RF Frequency</th>
-            <th class = "body">Brand</th>
             <th class = "body">Data Bus Width</th>
             <th class = "body">Interface Type</th>
-            <th class = "body">Operating Supply Voltage</th>
-            <th class = "body">Unit Weight</th>
-            <th class = "body">Product id</th>
           </tr>
           {data.map((item) => (
             <tr>
-            <td><div class="left">{item.Manufacturer}</div></td>
-            <td><div class="age0">{item.Product_Category}</div></td>
+            <td>{item.Product_id}</td>
+            <td>{item.Manufacturer}</td>
             <td>{item.Series}</td>
             <td class="body9">{item.Product}</td>
             <td class="body9">{item.Core}</td>
-            <td class="body1">{item.RF_Frequency}</td>
-            <td class="body2">{item.Brand}</td>
+            <td class="body12">{item.RF_Frequency}</td>
             <td>{item.Data_Bus_Width}</td>
             <td>{item.Interface_Type}</td>
-            <td>{item.Operating_Supply_Voltage}</td>
-            <td>{item.Unit_Weight}</td>
-            <td>{item.Product_id}</td>
             </tr>
           ))}
         </tbody>
