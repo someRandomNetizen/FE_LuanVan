@@ -22,7 +22,7 @@ export default function OrderStatisticsChart() {
 
   const data = useMemo(
     () => ({
-      labels: ["2/11 13:14", "2/11 15:03", "2/11 15:42", "2/11 16:18", "2/11 16:12"],
+      labels: ["2/11 13:14", "2/11 15:03", "2/11 15:42", "2/11 16:12", "2/11 16:18"],
       datasets: [
         {
           name: "abc",
@@ -148,7 +148,7 @@ export default function OrderStatisticsChart() {
             .alpha(0.1)
             .rgbString(),
 
-          data: [3, 8, 9, 4, 17]
+          data: [5, 18, 10, 5, 16]
         },
         {
           fill: true,
@@ -180,7 +180,7 @@ export default function OrderStatisticsChart() {
             .alpha(0.1)
             .rgbString(),
 
-          data: [5, 18, 10, 5, 16]
+          data: [3, 8, 9, 4, 17]
         }
       ]
     }),
