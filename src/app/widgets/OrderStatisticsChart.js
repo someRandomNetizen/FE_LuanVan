@@ -22,7 +22,7 @@ export default function OrderStatisticsChart() {
 
   const data = useMemo(
     () => ({
-      labels: ["11/2 13:14", "11/2 15:03", "11/2 15:42", "11/2 16:18", "11/2 16:12"],
+      labels: ["2/11 13:14", "2/11 15:03", "2/11 15:42", "2/11 16:18", "2/11 16:12"],
       datasets: [
         {
           name: "abc",
@@ -271,7 +271,7 @@ export default function OrderStatisticsChart() {
           titleSpacing: 0,
           callbacks: {
             title: function(tooltipItem, data) {
-              return "Device " + (tooltipItem[0].datasetIndex + 1);
+              return "Node " + (tooltipItem[0].datasetIndex + 1);
             },
             label: function(tooltipItem, data) {
               var label = data.datasets[tooltipItem.datasetIndex].label || '';
