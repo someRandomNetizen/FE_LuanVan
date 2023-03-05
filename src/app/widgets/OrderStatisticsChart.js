@@ -189,12 +189,13 @@ export default function OrderStatisticsChart() {
 
   const data = useMemo(
     () => ({
-      labels: ["2/11 16:18","2/11 16:19","2/11 16:20", "2/11 16:21", "2/11 16:22", "2/11 16:23", "2/11 16:24", "2/11 16:25", "2/11 16:26", "2/11 16:27", "2/11 16:28", "2/11 16:29", "2/11 16:30", "2/11 16:31", "2/11 16:32"],
+      labels: ["2/11 16:18","2/11 16:19","2/11 16:20", "2/11 16:21", "2/11 16:22", "2/11 16:23", "2/11 16:24", "2/11 16:25", "2/11 16:26", "2/11 16:27", "2/11 16:28", "2/11 16:29", "2/11 16:30", "2/11 16:31", "2/11 16:32",
+    ],
       datasets: [
         {
           name: "abc",
-          fill: true,
-          // borderWidth: 0,
+          fill:false,
+          borderWidth: 2,
           backgroundColor: Chart.helpers
             .color(brandColor)
             .alpha(0.6)
@@ -202,7 +203,7 @@ export default function OrderStatisticsChart() {
 
           borderColor: Chart.helpers
             .color(brandColor)
-            .alpha(0)
+            .alpha(1)
             .rgbString(),
 
           pointHoverRadius: 4,
@@ -224,15 +225,15 @@ export default function OrderStatisticsChart() {
           data: [1, 1, 9, 10, 17, 18, 0 , 0, 0, 0 ,0 ,0, 0, 0, 0]
         },
         {
-          fill: true,
-          // borderWidth: 0,
+          fill: false,
+          borderWidth: 2,
           backgroundColor: Chart.helpers
             .color(brandColor)
             .alpha(0.2)
             .rgbString(),
           borderColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0)
+            .color("red")
+            .alpha(1)
             .rgbString(),
 
           pointHoverRadius: 4,
@@ -254,17 +255,16 @@ export default function OrderStatisticsChart() {
           data: [1, 1, 6, 9, 16, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0]
         },
         {
-          fill: true,
-          // borderWidth: 0,
-          
+          borderWidth: 2,
+          fill: false,
           
           backgroundColor: Chart.helpers
             .color(brandColor)
             .alpha(0.2)
             .rgbString(),
           borderColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0)
+            .color("green")
+            .alpha(1)
             .rgbString(),
 
           pointHoverRadius: 4,
@@ -286,17 +286,16 @@ export default function OrderStatisticsChart() {
           data: [1, 1, 7, 10, 18, 20, 22, 0, 0, 0, 0, 0, 0, 0, 0]
         },
         {
-          fill: true,
-          // borderWidth: 0,
-          
+          borderWidth: 2,
+          fill: false,
           
           backgroundColor: Chart.helpers
             .color(brandColor)
             .alpha(0.2)
             .rgbString(),
           borderColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0)
+            .color("black")
+            .alpha(1)
             .rgbString(),
 
           pointHoverRadius: 4,
@@ -318,17 +317,16 @@ export default function OrderStatisticsChart() {
           data: [1, 1, 1, 13, 17, 21, 23, 0, 0, 0, 0, 0, 0, 0, 0]
         },
         {
-          fill: true,
-          // borderWidth: 0,
-          
+          borderWidth: 2,
+          fill: false,
           
           backgroundColor: Chart.helpers
             .color(brandColor)
             .alpha(0.2)
             .rgbString(),
           borderColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0)
+            .color("yellow")
+            .alpha(1)
             .rgbString(),
 
           pointHoverRadius: 4,
@@ -377,7 +375,7 @@ export default function OrderStatisticsChart() {
               },
               gridLines: false,
               ticks: {
-                display: true,
+                display: false,
                 beginAtZero: true,
                 fontColor: shape3Color,
                 fontSize: 13,
