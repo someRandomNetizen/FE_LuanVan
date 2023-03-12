@@ -49,11 +49,10 @@ export function DriverPage() {
     }
   };
 
-
-
   useEffect(() => {
     getProductData();
   }, []);
+  
   // useEffect(() => {
   //   axios.get('https://365truck.fdssoft.com/server/showDriver')
   //   .then(res => {

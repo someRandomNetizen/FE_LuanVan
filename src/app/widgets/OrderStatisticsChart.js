@@ -1,9 +1,36 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Chart } from "chart.js";
 import { useSelector } from "react-redux";
 import { metronic } from "../../_metronic";
+import axios from "axios";
+
+function declineTimeByOneSecond(inputTime) {
+  let outputArray = [];
+  let [hour, minute, second] = inputTime.split(':').map(Number);
+
+  for (let i = 0; i < 600; i++) {
+    second -= 1;
+    if (second < 0) {
+      minute -= 1;
+      second += 60;
+    }
+    if (minute < 0) {
+      hour -= 1;
+      minute += 60;
+    }
+    if (hour < 0) {
+      break;
+    }
+    outputArray.push(`${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`);
+  }
+
+  return outputArray;
+}
 
 export default function OrderStatisticsChart() {
+
+
+  
   const ref = useRef();
   const { brandColor, shape2Color, shape3Color } = useSelector(state => ({
     brandColor: metronic.builder.selectors.getConfig(
@@ -460,10 +487,76 @@ export default function OrderStatisticsChart() {
       chart.destroy();
     };
   }, [data, brandColor, shape2Color, shape3Color]);
+  // const Table = ({ data }) => {
+  //   console.log("love")
+  //   console.log(data);
+    
+  //   return (
+  //     <div></div>
+  //   );
+  // };
+  // let ff = axios.get('https://365truck.fdssoft.com/api/findLatestDate').then((response) => {
+  //   console.log(response.data);
+  // }).catch((error) => {
+  //   console.error(error);
+  // });
+
+  const [date, setDate] = useState([])
+
+  const getProductData = async () =>{
+    try{
+      const data = axios.get( 
+        'https://365truck.fdssoft.com/api/findLatestDate',
+      ).then(json => setDate(json.data))}
+    catch (e){
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getProductData();
+  }, []);
+
+
+
+  const [time, setTime] = useState([])
+
+  const getProductData2 = async () =>{
+    try{
+      const data = axios.get( 
+        'https://365truck.fdssoft.com/api/findLatestTime',
+      ).then(json => setTime(json.data))}
+    catch (e){
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getProductData2();
+  }, []);
+
+  let qqq = "abc"
+
+
+  var ttt = [];
+  
+  var uuu = time;
+  // ttt = declineTimeByOneSecond(time)
+  console.log("kewk");
+  console.log(declineTimeByOneSecond(uuu));
+  console.log("kewk");
 
   return (
+    
     <div className="kt-widget12">
-      
+      <div className="kt-widget12__content">
+        <div className="kt-widget12__item">
+          <div className="kt-widget12__info">
+            <span className="kt-widget12__desc">Dữ liệu được lấy vào ngày:  {date}</span>
+            {/* <span className="kt-widget12__value">$400,000</span> */}
+          </div>
+        </div>
+      </div>
       <div className="kt-widget12__chart" style={{ height: "250px" }}>
         <canvas
           ref={ref}
