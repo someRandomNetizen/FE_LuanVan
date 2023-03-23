@@ -3,34 +3,11 @@ import { Chart } from "chart.js";
 import { useSelector } from "react-redux";
 import { metronic } from "../../_metronic";
 import axios from "axios";
+import moment from "moment";
 
-function declineTimeByOneSecond(inputTime) {
-  let outputArray = [];
-  let [hour, minute, second] = inputTime.split(':').map(Number);
-
-  for (let i = 0; i < 600; i++) {
-    second -= 1;
-    if (second < 0) {
-      minute -= 1;
-      second += 60;
-    }
-    if (minute < 0) {
-      hour -= 1;
-      minute += 60;
-    }
-    if (hour < 0) {
-      break;
-    }
-    outputArray.push(`${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`);
-  }
-
-  return outputArray;
-}
 
 export default function OrderStatisticsChart() {
 
-
-  
   const ref = useRef();
   const { brandColor, shape2Color, shape3Color } = useSelector(state => ({
     brandColor: metronic.builder.selectors.getConfig(
@@ -47,177 +24,142 @@ export default function OrderStatisticsChart() {
     )
   }));
 
-  // const data = useMemo(
-  //   () => ({
-  //     labels: ["2/11 13:14", "2/11 15:03", "2/11 15:42", "2/11 16:12", "2/11 16:18", "2/11 16:20", "2/11 16:21", "2/11 16:22", "2/11 16:23", "2/11 16:24"],
-  //     datasets: [
-  //       {
-  //         name: "abc",
-  //         fill: true,
-  //         // borderWidth: 0,
-  //         backgroundColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0.6)
-  //           .rgbString(),
+  let kk = localStorage.getItem('accessToken3');
+  //const [date, setDate] = useState([])
+  const [date, setDate] = useState([])
+  const getProductData = async () =>{
+    try{
+      const data = axios.get( 
+        'https://365truck.fdssoft.com/api/findLatestDate',
+        kk,
+      ).then(json => setDate(json.data))}
+    catch (e){
+      console.log(e);
+    }
+  };
 
-  //         borderColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0)
-  //           .rgbString(),
+  useEffect(() => {
+    getProductData();
+  }, []);
 
-  //         pointHoverRadius: 4,
-  //         pointHoverBorderWidth: 12,
-  //         pointBackgroundColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointHoverBackgroundColor: brandColor,
-  //         pointHoverBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0.1)
-  //           .rgbString(),
+  const [timeArray, setTimeArray] = useState([])
 
-  //         data: [1, 7, 1, 1, 20, 9, 10, 17, 18, 20]
-  //       },
-  //       {
-  //         fill: true,
-  //         // borderWidth: 0,
-  //         backgroundColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0.2)
-  //           .rgbString(),
-  //         borderColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0)
-  //           .rgbString(),
+  const getProductData3 = async () =>{
+    try{
+      const data = await axios.get( 
+        'https://365truck.fdssoft.com/api/arrayTime',
+        kk,
+      ).then(json => setTimeArray(json.data))}
+    catch (e){
+      console.log(e);
+    }
+  };
 
-  //         pointHoverRadius: 4,
-  //         pointHoverBorderWidth: 12,
-  //         pointBackgroundColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointHoverBackgroundColor: brandColor,
-  //         pointHoverBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0.1)
-  //           .rgbString(),
+  useEffect(() => {
+    getProductData3();
+  }, []);
 
-  //         data: [0, 10, 6, 2, 19, 6, 9, 16, 19, 21]
-  //       },
-  //       {
-  //         fill: true,
-  //         // borderWidth: 0,
-          
-          
-  //         backgroundColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0.2)
-  //           .rgbString(),
-  //         borderColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0)
-  //           .rgbString(),
+  const [node1, setNode1] = useState([])
 
-  //         pointHoverRadius: 4,
-  //         pointHoverBorderWidth: 12,
-  //         pointBackgroundColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointHoverBackgroundColor: brandColor,
-  //         pointHoverBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0.1)
-  //           .rgbString(),
+  var mmm = {"Product_id":1}
+  const getProductData4 = async () =>{
+    try{
+      const response = await axios.get(
+        'https://365truck.fdssoft.com/api/findOneTimeNode1'
+      );
+      setNode1(response.data);
+    } catch (e){
+      console.log(e);
+    }
+  };
 
-  //         data: [2, 9, 3, 3, 18, 7, 10, 18, 20, 22]
-  //       },
-  //       {
-  //         fill: true,
-  //         // borderWidth: 0,
-          
-          
-  //         backgroundColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0.2)
-  //           .rgbString(),
-  //         borderColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0)
-  //           .rgbString(),
+  useEffect(() => {
+    getProductData4();
+  }, []);
 
-  //         pointHoverRadius: 4,
-  //         pointHoverBorderWidth: 12,
-  //         pointBackgroundColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointHoverBackgroundColor: brandColor,
-  //         pointHoverBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0.1)
-  //           .rgbString(),
+  const [node2, setNode2] = useState([])
 
-  //         data: [5, 18, 10, 5, 16, 1, 13, 17, 21, 23]
-  //       },
-  //       {
-  //         fill: true,
-  //         // borderWidth: 0,
-          
-          
-  //         backgroundColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0.2)
-  //           .rgbString(),
-  //         borderColor: Chart.helpers
-  //           .color(brandColor)
-  //           .alpha(0)
-  //           .rgbString(),
+  var mmm = {"Product_id":1}
+  const getProductData5 = async () =>{
+    try{
+      const response2 = await axios.get(
+        'https://365truck.fdssoft.com/api/findOneTimeNode2'
+      );
+      setNode2(response2.data);
+    } catch (e){
+      console.log(e);
+    }
+  };
 
-  //         pointHoverRadius: 4,
-  //         pointHoverBorderWidth: 12,
-  //         pointBackgroundColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0)
-  //           .rgbString(),
-  //         pointHoverBackgroundColor: brandColor,
-  //         pointHoverBorderColor: Chart.helpers
-  //           .color("#000000")
-  //           .alpha(0.1)
-  //           .rgbString(),
+  useEffect(() => {
+    getProductData5();
+  }, []);
 
-  //         data: [3, 8, 9, 4, 17, 3, 15, 16, 18, 24]
-  //       }
-  //     ]
-  //   }),
-  //   [brandColor]
-  // );
+  const [node3, setNode3] = useState([])
 
-  const data = useMemo(
-    () => ({
-      labels: ["2/11 16:18","2/11 16:19","2/11 16:20", "2/11 16:21", "2/11 16:22", "2/11 16:23", "2/11 16:24", "2/11 16:25", "2/11 16:26", "2/11 16:27", "2/11 16:28", "2/11 16:29", "2/11 16:30", "2/11 16:31", "2/11 16:32",
-    ],
+  var mmm = {"Product_id":1}
+  const getProductData6 = async () =>{
+    try{
+      const response3 = await axios.get(
+        'https://365truck.fdssoft.com/api/findOneTimeNode3'
+      );
+      setNode3(response3.data);
+    } catch (e){
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getProductData6();
+  }, []);
+
+  console.log("freaky");
+  console.log(node1);
+  console.log("freaky");
+
+  const [time, setTime] = useState([])
+
+  const getProductData2 = async () =>{
+    try{
+      const data = await axios.get( 
+        'https://365truck.fdssoft.com/api/findLatestTime',
+        kk,
+      ).then(json => setTime(json.data))}
+    catch (e){
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getProductData2();
+  }, []);
+
+
+
+  let qqq = "abc"
+
+
+  console.log(timeArray);
+  var ttt = [];
+  
+  var uuu = time;
+  // ttt = declineTimeByOneSecond(time)
+  console.log("kewk2");
+  console.log(node2);
+  console.log("kewk2");
+  console.log("kewk3");
+  console.log(node3);
+  console.log("kewk3");
+
+
+  const moment = require('moment');
+
+  const timeArray2 = ["11:23:31", "12:24:30", "12:25:24"
+];
+  //const myLabels = timeArray2.map(time => moment(time, "HH:mm").format('hh:mm:ss a'));
+  const renderChart = () => {
+  const data = {
+      labels: timeArray,
       datasets: [
         {
           name: "abc",
@@ -249,8 +191,10 @@ export default function OrderStatisticsChart() {
             .alpha(0.1)
             .rgbString(),
 
-          data: [1, 1, 9, 10, 17, 18, 0 , 0, 0, 0 ,0 ,0, 0, 0, 0]
+          data: node1
+          //data: [8, 9, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,]
         },
+        
         {
           fill: false,
           borderWidth: 2,
@@ -279,7 +223,8 @@ export default function OrderStatisticsChart() {
             .alpha(0.1)
             .rgbString(),
 
-          data: [1, 1, 6, 9, 16, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0]
+          // data: [1, 1, 6, 9, 16, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: node2
         },
         {
           borderWidth: 2,
@@ -310,78 +255,14 @@ export default function OrderStatisticsChart() {
             .alpha(0.1)
             .rgbString(),
 
-          data: [1, 1, 7, 10, 18, 20, 22, 0, 0, 0, 0, 0, 0, 0, 0]
+          // data: [99, 99, 99, 99, 99, 99, 99, 99]
+          data: node3
         },
-        {
-          borderWidth: 2,
-          fill: false,
-          
-          backgroundColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0.2)
-            .rgbString(),
-          borderColor: Chart.helpers
-            .color("black")
-            .alpha(1)
-            .rgbString(),
-
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 12,
-          pointBackgroundColor: Chart.helpers
-            .color("#000000")
-            .alpha(0)
-            .rgbString(),
-          pointBorderColor: Chart.helpers
-            .color("#000000")
-            .alpha(0)
-            .rgbString(),
-          pointHoverBackgroundColor: brandColor,
-          pointHoverBorderColor: Chart.helpers
-            .color("#000000")
-            .alpha(0.1)
-            .rgbString(),
-
-          data: [1, 1, 1, 13, 17, 21, 23, 0, 0, 0, 0, 0, 0, 0, 0]
-        },
-        {
-          borderWidth: 2,
-          fill: false,
-          
-          backgroundColor: Chart.helpers
-            .color(brandColor)
-            .alpha(0.2)
-            .rgbString(),
-          borderColor: Chart.helpers
-            .color("yellow")
-            .alpha(1)
-            .rgbString(),
-
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 12,
-          pointBackgroundColor: Chart.helpers
-            .color("#000000")
-            .alpha(0)
-            .rgbString(),
-          pointBorderColor: Chart.helpers
-            .color("#000000")
-            .alpha(0)
-            .rgbString(),
-          pointHoverBackgroundColor: brandColor,
-          pointHoverBorderColor: Chart.helpers
-            .color("#000000")
-            .alpha(0.1)
-            .rgbString(),
-
-          data: [1, 1, 3, 15, 16, 18, 24, 0, 0, 0, 0, 0, 0, 0, 0]
-        }
       ]
-    }),
-    [brandColor]
-  );
+    };
 
-  useEffect(() => {
-    // For more information about the chartjs, visit this link
-    // https://www.chartjs.org/docs/latest/getting-started/usage.html
+
+
 
     const chart = new Chart(ref.current, {
       data,
@@ -430,8 +311,8 @@ export default function OrderStatisticsChart() {
                 zeroLineBorderDash: [3, 4]
               },
               ticks: {
-                max: 24,
-                stepSize: 4,
+                max: 100,
+                stepSize: 10,
                 display: true,
                 beginAtZero: true,
                 fontColor: shape3Color,
@@ -465,11 +346,13 @@ export default function OrderStatisticsChart() {
             title: function(tooltipItem, data) {
               return "Node " + (tooltipItem[0].datasetIndex + 1);
             },
+
             label: function(tooltipItem, data) {
               var label = data.datasets[tooltipItem.datasetIndex].label || '';
-              label += '' + tooltipItem.yLabel + ' at ' + data.labels[tooltipItem.index];
+              label += '' + tooltipItem.yLabel + '% at ' + tooltipItem.xLabel;
               return label;
-            }
+            },
+            
           }
         },
         layout: {
@@ -485,67 +368,15 @@ export default function OrderStatisticsChart() {
 
     return () => {
       chart.destroy();
-    };
-  }, [data, brandColor, shape2Color, shape3Color]);
-  // const Table = ({ data }) => {
-  //   console.log("love")
-  //   console.log(data);
-    
-  //   return (
-  //     <div></div>
-  //   );
-  // };
-  // let ff = axios.get('https://365truck.fdssoft.com/api/findLatestDate').then((response) => {
-  //   console.log(response.data);
-  // }).catch((error) => {
-  //   console.error(error);
-  // });
 
-  const [date, setDate] = useState([])
-
-  const getProductData = async () =>{
-    try{
-      const data = axios.get( 
-        'https://365truck.fdssoft.com/api/findLatestDate',
-      ).then(json => setDate(json.data))}
-    catch (e){
-      console.log(e);
-    }
-  };
-
+  }, [data, brandColor, shape2Color, shape3Color];
+}
   useEffect(() => {
-    getProductData();
-  }, []);
-
-
-
-  const [time, setTime] = useState([])
-
-  const getProductData2 = async () =>{
-    try{
-      const data = axios.get( 
-        'https://365truck.fdssoft.com/api/findLatestTime',
-      ).then(json => setTime(json.data))}
-    catch (e){
-      console.log(e);
+    if (timeArray.length > 0 && node1.length > 0 && node2.length > 0 && node3.length > 0 ) {
+      const cleanup = renderChart();
+      return cleanup;
     }
-  };
-
-  useEffect(() => {
-    getProductData2();
-  }, []);
-
-  let qqq = "abc"
-
-
-  var ttt = [];
-  
-  var uuu = time;
-  // ttt = declineTimeByOneSecond(time)
-  console.log("kewk");
-  console.log(declineTimeByOneSecond(uuu));
-  console.log("kewk");
-
+  }, [timeArray, node1, node2, node3]);
   return (
     
     <div className="kt-widget12">
@@ -568,14 +399,17 @@ export default function OrderStatisticsChart() {
     </div>
   );
 }
-
-
-// import React, { useEffect, useMemo, useRef } from "react";
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// import React, { useEffect, useMemo, useRef, useState } from "react";
 // import { Chart } from "chart.js";
 // import { useSelector } from "react-redux";
 // import { metronic } from "../../_metronic";
+// import axios from "axios";
+// import moment from "moment";
+
 
 // export default function OrderStatisticsChart() {
+
 //   const ref = useRef();
 //   const { brandColor, shape2Color, shape3Color } = useSelector(state => ({
 //     brandColor: metronic.builder.selectors.getConfig(
@@ -592,16 +426,146 @@ export default function OrderStatisticsChart() {
 //     )
 //   }));
 
+//   let kk = localStorage.getItem('accessToken3');
+//   //const [date, setDate] = useState([])
+//   const [date, setDate] = useState([])
+//   const getProductData = async () =>{
+//     try{
+//       const data = axios.get( 
+//         'https://365truck.fdssoft.com/api/findLatestDate',
+//         kk,
+//       ).then(json => setDate(json.data))}
+//     catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData();
+//   }, []);
+
+//   const [timeArray, setTimeArray] = useState([])
+
+//   const getProductData3 = async () =>{
+//     try{
+//       const data = await axios.get( 
+//         'https://365truck.fdssoft.com/api/arrayTime',
+//         kk,
+//       ).then(json => setTimeArray(json.data))}
+//     catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData3();
+//   }, []);
+
+//   const [node1, setNode1] = useState([])
+
+//   var mmm = {"Product_id":1}
+//   const getProductData4 = async () =>{
+//     try{
+//       const response = await axios.get(
+//         'https://365truck.fdssoft.com/api/findOneTimeNode1'
+//       );
+//       setNode1(response.data);
+//     } catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData4();
+//   }, []);
+
+//   const [node2, setNode2] = useState([])
+
+//   var mmm = {"Product_id":1}
+//   const getProductData5 = async () =>{
+//     try{
+//       const response2 = await axios.get(
+//         'https://365truck.fdssoft.com/api/findOneTimeNode2'
+//       );
+//       setNode2(response2.data);
+//     } catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData5();
+//   }, []);
+
+//   const [node3, setNode3] = useState([])
+
+//   var mmm = {"Product_id":1}
+//   const getProductData6 = async () =>{
+//     try{
+//       const response3 = await axios.get(
+//         'https://365truck.fdssoft.com/api/findOneTimeNode3'
+//       );
+//       setNode3(response3.data);
+//     } catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData6();
+//   }, []);
+
+//   console.log("freaky");
+//   console.log(node1);
+//   console.log("freaky");
+
+//   const [time, setTime] = useState([])
+
+//   const getProductData2 = async () =>{
+//     try{
+//       const data = await axios.get( 
+//         'https://365truck.fdssoft.com/api/findLatestTime',
+//         kk,
+//       ).then(json => setTime(json.data))}
+//     catch (e){
+//       console.log(e);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getProductData2();
+//   }, []);
+
+
+
+//   let qqq = "abc"
+
+
+//   console.log(timeArray);
+//   var ttt = [];
+  
+//   var uuu = time;
+//   // ttt = declineTimeByOneSecond(time)
+//   console.log("kewk2");
+//   console.log(time);
+//   console.log("kewk2");
+
+//   const moment = require('moment');
+
+//   const timeArray2 = ["11L23:31", "12:24:30", "12:25:24"
+// ];
+//   //const myLabels = timeArray2.map(time => moment(time, "HH:mm").format('hh:mm:ss a'));
+  
 //   const data = useMemo(
+
+    
 //     () => ({
-//       labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-//                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-//                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-//                "31"],
+//       labels: timeArray,
 //       datasets: [
 //         {
-//           fill: true,
-//           // borderWidth: 0,
+//           name: "abc",
+//           fill:false,
+//           borderWidth: 2,
 //           backgroundColor: Chart.helpers
 //             .color(brandColor)
 //             .alpha(0.6)
@@ -609,7 +573,7 @@ export default function OrderStatisticsChart() {
 
 //           borderColor: Chart.helpers
 //             .color(brandColor)
-//             .alpha(0)
+//             .alpha(1)
 //             .rgbString(),
 
 //           pointHoverRadius: 4,
@@ -628,18 +592,20 @@ export default function OrderStatisticsChart() {
 //             .alpha(0.1)
 //             .rgbString(),
 
-//           data: [20, 40, 50, 25, 35, 60, 30]
+//           data: [node1]
+//           //data: [8, 9, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,1, 1, 6, 9, 16, 19, 21,]
 //         },
+        
 //         {
-//           fill: true,
-//           // borderWidth: 0,
+//           fill: false,
+//           borderWidth: 2,
 //           backgroundColor: Chart.helpers
 //             .color(brandColor)
 //             .alpha(0.2)
 //             .rgbString(),
 //           borderColor: Chart.helpers
-//             .color(brandColor)
-//             .alpha(0)
+//             .color("red")
+//             .alpha(1)
 //             .rgbString(),
 
 //           pointHoverRadius: 4,
@@ -658,16 +624,49 @@ export default function OrderStatisticsChart() {
 //             .alpha(0.1)
 //             .rgbString(),
 
-//           data: [25, 45, 55, 30, 40, 65, 35]
-//         }
+//           // data: [1, 1, 6, 9, 16, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0]
+//           data: [node2]
+//         },
+//         {
+//           borderWidth: 2,
+//           fill: false,
+          
+//           backgroundColor: Chart.helpers
+//             .color(brandColor)
+//             .alpha(0.2)
+//             .rgbString(),
+//           borderColor: Chart.helpers
+//             .color("green")
+//             .alpha(1)
+//             .rgbString(),
+
+//           pointHoverRadius: 4,
+//           pointHoverBorderWidth: 12,
+//           pointBackgroundColor: Chart.helpers
+//             .color("#000000")
+//             .alpha(0)
+//             .rgbString(),
+//           pointBorderColor: Chart.helpers
+//             .color("#000000")
+//             .alpha(0)
+//             .rgbString(),
+//           pointHoverBackgroundColor: brandColor,
+//           pointHoverBorderColor: Chart.helpers
+//             .color("#000000")
+//             .alpha(0.1)
+//             .rgbString(),
+
+//           // data: [1, 1, 7, 10, 18, 20, 22, 0, 0, 0, 0, 0, 0, 0, 0]
+//           data: [node3]
+//         },
+       
 //       ]
 //     }),
 //     [brandColor]
 //   );
 
 //   useEffect(() => {
-//     // For more information about the chartjs, visit this link
-//     // https://www.chartjs.org/docs/latest/getting-started/usage.html
+
 
 //     const chart = new Chart(ref.current, {
 //       data,
@@ -688,7 +687,7 @@ export default function OrderStatisticsChart() {
 //               },
 //               gridLines: false,
 //               ticks: {
-//                 display: true,
+//                 display: false,
 //                 beginAtZero: true,
 //                 fontColor: shape3Color,
 //                 fontSize: 13,
@@ -716,7 +715,7 @@ export default function OrderStatisticsChart() {
 //                 zeroLineBorderDash: [3, 4]
 //               },
 //               ticks: {
-//                 max: 70,
+//                 max: 100,
 //                 stepSize: 10,
 //                 display: true,
 //                 beginAtZero: true,
@@ -746,7 +745,19 @@ export default function OrderStatisticsChart() {
 //           titleFontColor: "#ffffff",
 //           cornerRadius: 4,
 //           footerSpacing: 0,
-//           titleSpacing: 0
+//           titleSpacing: 0,
+//           callbacks: {
+//             title: function(tooltipItem, data) {
+//               return "Node " + (tooltipItem[0].datasetIndex + 1);
+//             },
+
+//             label: function(tooltipItem, data) {
+//               var label = data.datasets[tooltipItem.datasetIndex].label || '';
+//               label += '' + tooltipItem.yLabel + '% at ' + tooltipItem.xLabel;
+//               return label;
+//             },
+            
+//           }
 //         },
 //         layout: {
 //           padding: {
@@ -763,40 +774,16 @@ export default function OrderStatisticsChart() {
 //       chart.destroy();
 //     };
 //   }, [data, brandColor, shape2Color, shape3Color]);
-
+ 
+  
 //   return (
+    
 //     <div className="kt-widget12">
 //       <div className="kt-widget12__content">
 //         <div className="kt-widget12__item">
 //           <div className="kt-widget12__info">
-//             <span className="kt-widget12__desc">Annual Taxes EMS</span>
-//             <span className="kt-widget12__value">$400,000</span>
-//           </div>
-//           <div className="kt-widget12__info">
-//             <span className="kt-widget12__desc">Finance Review Date</span>
-//             <span className="kt-widget12__value">July 24,2019</span>
-//           </div>
-//         </div>
-//         <div className="kt-widget12__item">
-//           <div className="kt-widget12__info">
-//             <span className="kt-widget12__desc">Avarage Revenue</span>
-//             <span className="kt-widget12__value">$60M</span>
-//           </div>
-//           <div className="kt-widget12__info">
-//             <span className="kt-widget12__desc">Revenue Margin</span>
-//             <div className="kt-widget12__progress">
-//               <div className="progress kt-progress--sm">
-//                 <div
-//                   role="progressbar"
-//                   aria-valuemin={0}
-//                   aria-valuenow={100}
-//                   aria-valuemax={100}
-//                   style={{ width: "40%" }}
-//                   className="progress-bar bg-success"
-//                 />
-//               </div>
-//               <span className="kt-widget12__stat">40%</span>
-//             </div>
+//             <span className="kt-widget12__desc">Dữ liệu được lấy vào ngày:  {date}</span>
+//             {/* <span className="kt-widget12__value">$400,000</span> */}
 //           </div>
 //         </div>
 //       </div>
@@ -811,3 +798,4 @@ export default function OrderStatisticsChart() {
 //     </div>
 //   );
 // }
+
