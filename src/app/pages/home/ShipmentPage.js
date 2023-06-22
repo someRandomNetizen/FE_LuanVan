@@ -146,7 +146,7 @@ export function ShipmentPage() {
       { name: "Mike", city: "Los Angeles" },
       { name: "Zach", city: "New York" }
     ];
-    let header = ["Temperature","Humidity","Clock Cycle","CPU Utilization","Date","Time","Product id","Record id"];
+    let header = ["Temperature","Humidity","RSSI","CPU Utilization","Date","Time","Product id","Record id"];
 
     XlsxPopulate.fromBlankAsync().then(async (workbook) => {
       const sheet1 = workbook.sheet(0);
@@ -214,20 +214,22 @@ export function ShipmentPage() {
             <th class = "body">Record id</th>
             <th class = "body">Temperature</th>
             <th class = "body">Humidity</th>
-            <th class = "body">CPU Utilization</th>
+            <th class = "body">RSSI</th>
             <th class = "body">Date</th>
             <th class = "body">Time</th>
             <th class = "body">Product id</th>
+            <th class = "body">CPU Utilization</th>
           </tr>
           {data.map((item) => (
             <tr>
             <td>{item.Record_id}</td>
             <td>{item.Temperature}</td>
             <td>{item.Humidity}</td>
-            <td>{item.CPU_Utilization}</td>
+            <td>{item.Clock_Cycle}</td>
             <td class="body9">{item.Date}</td>
             <td class="body13">{item.Time}</td>
             <td class="body20">{item.Product_id}</td>
+            <td class="body20">{item.CPU_Utilization}</td>
             </tr>
           ))}
         </tbody>
@@ -278,7 +280,7 @@ const _handleFile = async (e) => {
     a.push({
       "Temperature":jsonData[i][0],
       "Humidity":jsonData[i][1],
-      "Clock_Cycle":jsonData[i][2],
+      "RSSI":jsonData[i][2],
       "CPU_Utilization":jsonData[i][3],
       "Date":jsonData[i][4],
       "Time":jsonData[i][5],
@@ -319,7 +321,7 @@ const _handleFile = async (e) => {
 
   //search{
   const [query, setQuery] = useState("");
-  const keys = ["Temperature","Humidity","Clock_Cycle","CPU_Utilization","Date","Time","Product_id","Record_id"];
+  const keys = ["Temperature","Humidity","RSSI","CPU_Utilization","Date","Time","Product_id","Record_id"];
 
   const search = (data) => {
     console.log("love2")

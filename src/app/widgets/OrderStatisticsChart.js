@@ -156,6 +156,13 @@ export default function OrderStatisticsChart() {
 
   const timeArray2 = ["11:23:31", "12:24:30", "12:25:24"
 ];
+
+
+
+
+
+
+
   //const myLabels = timeArray2.map(time => moment(time, "HH:mm").format('hh:mm:ss a'));
   const renderChart = () => {
   const data = {
